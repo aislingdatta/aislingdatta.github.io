@@ -1,0 +1,100 @@
+html, body, div, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption,
+tbody, tfoot, thead, tr, th, td, article,
+aside, canvas, details, embed, figure, figcaption,
+footer, header, hgroup, menu, nav, output,
+ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #333333;
+  font-family: sans-serif;
+}
+
+main {
+  max-width: 700px;
+  margin: 3rem auto;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.35);
+}
+
+header {
+  background-color: #a7a7b4;
+  padding: 2rem;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+h2 {
+  color: #ffffff;
+  font-family: serif;
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
+
+section {
+  padding: 4rem 2rem 2rem;
+}
+
+h3 {
+  color: #b12a25;
+  border-top: 0.25rem solid #b12a25;
+  padding-top: 0.75rem;
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+ul {
+  list-style-type: none;
+  margin-bottom: 3rem;
+}
+
+li {
+  margin-bottom: 2rem;
+}
+
+h4 {
+  color: #333333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.description {
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.price {
+  color: #b12a25;
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
+}
