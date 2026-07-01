@@ -1,61 +1,94 @@
-/*CSS document*/
+html, body, div, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption,
+tbody, tfoot, thead, tr, th, td, article,
+aside, canvas, details, embed, figure, figcaption,
+footer, header, hgroup, menu, nav, output,
+ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+}
 
-html, body, div, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit;}
+img {
+  width: 100%;
+  display: block;
+}
 
 body {
-	background-color: rgb(247, 247, 247); /* Not totally white. */
-	color: rgb(51, 51, 51);  /* Not totally black. */
-	line-height: 140%; 	/* A little extra leading. */
-	font-family: sans-serif;
+  background-color: #f7f7f7;
+  color: #2f2f2f;
+  font-family: sans-serif;
+}
+
+main {
+  width: 100%;
+}
+
+header {
+  background-color: #a4a3ad;
+  padding: 1.5rem;
 }
 
 h1 {
-	background-color: rgb(153, 153, 166);
-	color: rgb(247, 247, 247); /* Same as body background. */
-	font-size: 2.3em;
-	padding: .8em .5em .5em; /* You want three values. */
-	font-weight: bold;
-	text-transform: uppercase;
+  color: white;
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.04rem;
 }
 
-
 h2 {
-	background-color: rgb(153, 153, 166);
-	color: rgb(247, 247, 247);
-	font-size: 1.8em;
-	padding: .7em .7em 1.2em;
-	font-family: serif;
-	font-weight: bold;
+  color: white;
+  font-family: serif;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
+
+section {
+  padding: 3rem 1.5rem 1.5rem;
 }
 
 h3 {
-	margin: 2em 1em 1em; /*Three values again. You got the idea.*/
-	padding-top: .8em;
-	font-size: 1.4em;
-	color: rgb(159, 59, 49);
-	font-weight: bold;
-	text-transform: uppercase;
-	letter-spacing: .1em; /*Just an extra tracking for bold uppercase letters. Try 0.1em */
-	border-top: 3px solid rgb(159, 59, 49);
-}
-
-h4 {
-	font-weight: bold;
-}
-
-p.description {
-	font-style: italic;
-}
-
-p.price {
-	color: rgb(159, 59, 49);
+  color: #a7332d;
+  border-top: 0.2rem solid #a7332d;
+  padding-top: 1rem;
+  margin-bottom: 1.8rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
 }
 
 ul {
-	margin: 0 1.3em 2em;
+  list-style-type: none;
 }
 
-li { 
-	margin: 1.5em 0;
-	list-style-type: none;
+li {
+  margin-bottom: 1.8rem;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.description {
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.price {
+  color: #a7332d;
+  font-size: 1rem;
+  margin-top: 0.25rem;
 }
