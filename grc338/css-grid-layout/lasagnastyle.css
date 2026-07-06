@@ -15,12 +15,13 @@ img {
 
 body {
 	line-height: 140%;
-	background-color: rgb(250,250,250);
+	background-color: rgb(220,220,220);
 }
 
 .container {
-	width: 100%;
+	width: 70%;
 	margin: auto;
+	background-color: rgb(250,250,250);
 }
 
 header {
@@ -46,8 +47,13 @@ h2 {
 	margin-top: 0.35em;
 }
 
+figure {
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+}
+
 figure img {
-	height: 50em;
+	height: 30em;
 	object-fit: cover;
 	object-position: center;
 }
@@ -56,16 +62,19 @@ figcaption {
 	font-family: poppins, sans-serif;
 	font-weight: 400;
 	font-style: italic;
-	margin: 1.5em 2em 1em;
+	margin: 2em;
 }
 
 main {
-	display: block;
-	padding: 0 2em 2em;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 3em;
+	padding: 2em;
 }
 
 h3 {
 	padding-top: 0.75em;
+	border-top: 1px solid rgb(232,135,15);
 	font-family: Sutro, serif;
 	font-weight: 700;
 	font-style: normal;
@@ -100,5 +109,4 @@ footer {
 	font-style: normal;
 	color: rgb(250,250,250);
 	padding: 1.25em;
-	margin-top: 1em;
 }
