@@ -59,7 +59,7 @@ figcaption {
 	margin: 1.5em 2em 1em;
 }
 
- main {
+main {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 1.5em;
