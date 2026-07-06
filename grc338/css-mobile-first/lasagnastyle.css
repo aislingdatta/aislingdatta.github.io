@@ -60,9 +60,7 @@ figcaption {
 }
 
 main {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 1.5em;
+	display: block;
 	padding: 0 2em 2em;
 }
 
