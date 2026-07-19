@@ -1,0 +1,184 @@
+/*CSS DOCUMENT*/
+
+html, body, div, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+} /* My edited version of the Eric Meyer reset tool. */
+
+div.home-container {
+    background: url(home-background.jpg) center center fixed;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+}
+
+div.container {
+    position: relative;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+/* IMPORTANT:
+   Wrap the home page in a div with class="home-container".
+   All other pages should use class="container".
+*/
+
+main {
+    padding: 2rem 1rem 4rem;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    background: #d9d9d9;
+    padding: 1rem;
+}
+
+h1 {
+    width: 10rem;
+}
+
+h2,
+h3,
+h4 {
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 0 0 1rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin: 1rem 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav ul {
+    text-align: right;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+figure {
+    margin-bottom: 1rem;
+}
+
+main.menu ul {
+    margin: 1rem 0;
+}
+
+main.menu ul li {
+    margin: 0 0 1.5rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+}
+
+p {
+    margin: 0.25rem 0 0.5rem;
+}
+
+p.description {
+    grid-column: 1;
+    margin: 0;
+}
+
+p.price {
+    grid-row: 1;
+    grid-column: 2;
+    color: #cc4444;
+    text-align: right;
+    margin: 0;
+}
+
+nav ul li {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+nav ul li a {
+    color: #ffff00;
+    background-color: #0000ff;
+    padding: 0.75rem 1rem;
+    font-size: 1.2rem;
+}
+
+p.slogan {
+    font-size: 2rem;
+    font-family: Georgia, serif;
+    font-style: italic;
+    margin: 2rem 0;
+    color: #ffffff;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    background: #ffff00;
+}
+
+address {
+    color: #cd853f;
+}
+
+footer p {
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #cc0000;
+}
+
+article {
+    background-color: #add8e6;
+    padding: 1rem;
+}
+
+nav ul li.selected a {
+    background-color: #ff8c00;
+}
+
+/* Desktop Layout */
+@media screen and (min-width: 60em) {
+
+    div.container,
+    div.home-container {
+        width: 95%;
+        max-width: 80rem;
+        margin: 0 auto;
+    }
+
+    nav ul li {
+        display: inline;
+        margin-left: 1rem;
+    }
+
+    main.menu ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+    }
+
+}
