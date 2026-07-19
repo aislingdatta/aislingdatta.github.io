@@ -1,7 +1,12 @@
 /*CSS DOCUMENT*/
 
-html, body, div, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit;} /*My edited version of the Eric Meyer’s reset tool. You may want to include this in all of your future CSS files. */
-
+html, body, div, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+} /* My edited version of the Eric Meyer reset tool. */
 
 div.home-container {
     background: url(home-background.jpg) center center fixed;
@@ -16,14 +21,17 @@ div.container {
     background-color: #ffffff;
 }
 
-/* >>> IMPORTANT: you have to change the wrap of the content of your home page (index) in a div with a class home-container to make it work. If you used a div with the class container on your home, you’ll only need to change the name of the class. And you need a div with the class container and all the other pages.  */
+/* IMPORTANT:
+   Wrap the home page in a div with class="home-container".
+   All other pages should use class="container".
+*/
 
 main {
     padding: 2rem 1rem 4rem;
 }
 
 img {
-    width: 100%; /*Please leave this line.*/
+    width: 100%;
     display: block;
 }
 
@@ -52,7 +60,7 @@ h2 {
 
 h3 {
     font-size: 1.25rem;
-    margin: 1rem 0 1rem;
+    margin: 1rem 0;
 }
 
 a {
@@ -147,16 +155,21 @@ article {
     background-color: #add8e6;
     padding: 1rem;
 }
+
 nav ul li.selected a {
     background-color: #ff8c00;
 }
 
+/* Desktop Layout */
 @media screen and (min-width: 60em) {
+
     div.container,
     div.home-container {
-        max-width: 60rem;
+        width: 95%;
+        max-width: 80rem;
         margin: 0 auto;
     }
+
     nav ul li {
         display: inline;
         margin-left: 1rem;
@@ -167,4 +180,5 @@ nav ul li.selected a {
         grid-template-columns: 1fr 1fr;
         column-gap: 2rem;
     }
+
 }
