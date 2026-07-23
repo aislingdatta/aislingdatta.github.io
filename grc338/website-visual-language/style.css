@@ -1,0 +1,234 @@
+/* CSS DOCUMENT */
+
+/* Basic reset */
+html, body, header, nav, main, section, footer, div, h1, h2, h3, h4,
+p, ul, li, address, img, a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+}
+
+/* Page basics */
+body {
+    background-color: #ffffff;
+    color: #222222;
+    font-family: "proxima-nova", Arial, sans-serif;
+    line-height: 1.5;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+}
+
+/* Header and navigation */
+.site-header {
+    background-color: #173d2a;
+    color: #ffffff;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+.logo {
+    width: 9rem;
+    margin: 0 auto 0.75rem;
+}
+
+.site-name {
+    font-family: "freight-text-pro", Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: normal;
+    letter-spacing: 0.06rem;
+    line-height: 1.1;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.navigation a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+}
+
+/* Images */
+.hero-image {
+    width: 100%;
+    height: 72vh;
+    object-fit: cover;
+}
+
+.page-image {
+    width: 100%;
+    margin: 1.5rem auto 2rem;
+}
+
+/* Reusable page content */
+.content-page,
+.page-introduction,
+.about-section {
+    width: 88%;
+    max-width: 70rem;
+    margin: 0 auto;
+}
+
+.page-introduction {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.page-introduction h2,
+.about-section h2 {
+    color: #173d2a;
+    font-family: "freight-text-pro", Georgia, serif;
+    font-size: 2rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+}
+
+.page-introduction p,
+.about-section p {
+    max-width: 42rem;
+    margin: 0 auto 1rem;
+}
+
+.about-section {
+    padding: 0 0 3rem;
+    text-align: center;
+}
+
+/* Menu */
+.menu-columns {
+    display: block;
+}
+
+.menu-category {
+    margin-bottom: 3rem;
+}
+
+.menu-category h3 {
+    color: #173d2a;
+    font-family: "freight-text-pro", Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: normal;
+    margin-bottom: 1.5rem;
+}
+
+.menu-list {
+    list-style: none;
+}
+
+.menu-list li {
+    margin-bottom: 1.75rem;
+}
+
+.menu-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.menu-heading h4 {
+    font-size: 1.05rem;
+}
+
+.price {
+    white-space: nowrap;
+}
+
+.menu-list li > p {
+    margin-top: 0.25rem;
+}
+
+.menu-note {
+    margin: 0 0 3rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Location */
+.location-columns {
+    display: block;
+    padding-bottom: 3rem;
+}
+
+.location-section {
+    margin-bottom: 2.5rem;
+}
+
+.location-section h3 {
+    color: #173d2a;
+    font-family: "freight-text-pro", Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+}
+
+.location-section address {
+    font-style: normal;
+    margin-bottom: 1.5rem;
+}
+
+.location-section a {
+    color: #173d2a;
+}
+
+.hours-group {
+    margin-bottom: 1.75rem;
+}
+
+/* Footer */
+footer {
+    background-color: #173d2a;
+    color: #ffffff;
+    padding: 1.25rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Larger screens */
+@media screen and (min-width: 48rem) {
+    .site-header {
+        padding: 1.5rem;
+    }
+
+    .logo {
+        width: 11rem;
+    }
+
+    .site-name {
+        font-size: 3.5rem;
+    }
+
+    .menu-columns,
+    .location-columns {
+        display: flex;
+        gap: 5rem;
+    }
+
+    .menu-column,
+    .location-section {
+        width: 50%;
+    }
+
+    .page-image {
+        max-height: 34rem;
+        object-fit: cover;
+    }
+}
