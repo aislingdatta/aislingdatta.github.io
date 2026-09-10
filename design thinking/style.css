@@ -1,0 +1,49 @@
+*{box-sizing:border-box}
+:root{--pink:#f7e6f4;--cream:#fbf8f2;--light:#e8f0d7;--green:#96b66c;--dark:#587344;--text:#20251f;--muted:#6e7668}
+body{margin:0;background:#efede7;color:var(--text);font-family:"Trebuchet MS","Avenir Next",Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{width:min(100%,470px);min-height:100vh;margin:auto;padding:28px 18px 45px;background:var(--cream)}
+header{margin-bottom:20px}
+header h1{margin:0;font-size:31px;text-transform:lowercase;letter-spacing:-1px}
+header p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.top{display:grid;grid-template-columns:1.15fr .85fr;gap:12px}
+.box{background:white;border:1px solid #daddd2;border-radius:24px;padding:20px;margin-bottom:14px;box-shadow:0 8px 24px rgba(62,75,56,.07)}
+.top .box{min-height:140px}
+.saved{background:var(--light);border:0}
+.left{background:var(--pink);border:0}
+.box p{margin:0}
+.box h2{font-size:32px;margin:10px 0 5px}
+.box small{color:var(--muted);line-height:1.35}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.label{font-size:11px!important;color:var(--muted);font-weight:bold;text-transform:uppercase;letter-spacing:1.2px}
+h3{font-size:17px;margin:5px 0 0;text-transform:lowercase}
+.limit{font-size:12px;color:var(--muted);font-weight:bold;display:flex;align-items:center;gap:7px}
+.limit input{width:46px;padding:8px 4px;text-align:center;border:2px solid var(--green);border-radius:9px;background:white;color:var(--dark);font-weight:bold}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:20px}
+.days button{aspect-ratio:1;border-radius:50%;border:2px solid #b4cb8d;background:var(--light);font-size:11px;font-weight:bold;padding:0}
+.days button.selected{background:var(--dark);border-color:var(--dark);color:white}
+.days button.blocked{opacity:.42}
+.note{font-size:12px;color:var(--muted);margin-top:12px!important}
+.timerBox{text-align:center;background:var(--pink);border:0}
+.timerBox .label{text-align:left}
+.timerBox h3{text-align:left}
+.timer{--p:0deg;width:190px;height:190px;margin:23px auto 16px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,var(--pink) 65%,transparent 66%),conic-gradient(var(--dark) var(--p),#d5cfcb 0)}
+.timer span{font-size:43px;letter-spacing:-2px}
+.question{font-size:13px;line-height:1.45;color:var(--muted);max-width:280px;margin:0 auto!important}
+.buttons{display:flex;justify-content:center;gap:8px;margin-top:16px}
+.mainButton,.outline{border-radius:999px;padding:11px 17px;font-size:12px;font-weight:bold}
+.mainButton{border:0;background:var(--dark);color:white}
+.outline{border:1px solid var(--dark);background:transparent;color:var(--dark)}
+.hidden{display:none!important}
+.choice{display:flex;gap:8px;margin-top:9px}
+.choice button{flex:1;border:1.5px solid #daddd2;background:white;border-radius:13px;padding:11px;font-size:12px;font-weight:bold}
+.choice button.selected{background:var(--light);border-color:var(--green);color:var(--dark)}
+.second{margin-top:22px}
+.amountArea{margin-top:17px;padding:15px;border-radius:17px;background:#f3f1eb}
+.amountArea label{display:block;font-size:12px;font-weight:bold;margin-bottom:7px}
+.moneyInput{display:flex;align-items:center;background:white;border:1px solid #daddd2;border-radius:11px;padding:0 10px;margin-bottom:10px}
+.moneyInput input{border:0;outline:0;width:100%;padding:11px 6px;background:transparent}
+.feedback{min-height:18px;margin-top:12px!important;color:var(--dark);font-size:12px;font-weight:bold}
+.resetWeek{width:100%;padding:11px;border:1px solid #daddd2;border-radius:999px;background:transparent;color:var(--muted);font-size:11px}
+@media(max-width:360px){.top{grid-template-columns:1fr}.days{gap:3px}.days button{font-size:9px}}
