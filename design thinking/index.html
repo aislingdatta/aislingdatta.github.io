@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Save It or Spend It</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header>
+    <h1>save it or spend it</h1>
+    <p>good food, bigger goals</p>
+  </header>
+
+  <section class="top">
+    <div class="box saved">
+      <p>money saved</p>
+      <h2 id="total">$0.00</h2>
+      <small>money you kept by skipping food</small>
+    </div>
+    <div class="box left">
+      <p>eating out days left</p>
+      <h2><span id="left">2</span> / <span id="limitTop">2</span></h2>
+      <small>planned days for this week</small>
+    </div>
+  </section>
+
+  <section class="box">
+    <div class="row">
+      <div>
+        <p class="label">your week</p>
+        <h3>choose your eating out days</h3>
+      </div>
+      <label class="limit">set limit
+        <input id="limit" type="number" min="0" max="7" value="2">
+      </label>
+    </div>
+
+    <div class="days">
+      <button data-day="Mon">Mon</button>
+      <button data-day="Tue">Tue</button>
+      <button data-day="Wed">Wed</button>
+      <button data-day="Thu">Thu</button>
+      <button data-day="Fri">Fri</button>
+      <button data-day="Sat">Sat</button>
+      <button data-day="Sun">Sun</button>
+    </div>
+    <p id="dayMessage" class="note">choose up to 2 days.</p>
+  </section>
+
+  <section class="box timerBox">
+    <p class="label">feeling like eating out?</p>
+    <h3>give yourself 10 minutes</h3>
+
+    <div class="timer" id="timerCircle">
+      <span id="timer">10:00</span>
+    </div>
+
+    <p class="question">do i actually want this, or am i just feeling FOMO?</p>
+    <div class="buttons">
+      <button class="mainButton" id="start">start</button>
+      <button class="outline hidden" id="cancel">reset</button>
+    </div>
+  </section>
+
+  <section class="box">
+    <p class="label">daily check in</p>
+    <h3>did you go out with friends?</h3>
+    <div class="choice" id="friends">
+      <button data-choice="yes">yes</button>
+      <button data-choice="no">no</button>
+    </div>
+
+    <h3 class="second">did you eat out?</h3>
+    <div class="choice" id="ate">
+      <button data-choice="yes">yes, i spent</button>
+      <button data-choice="no">no, i saved</button>
+    </div>
+
+    <div id="amountArea" class="amountArea hidden">
+      <label id="amountText">amount</label>
+      <div class="moneyInput"><span>$</span><input id="amount" type="number" min="0" step=".01" placeholder="0.00"></div>
+      <button class="mainButton" id="add">update money saved</button>
+    </div>
+    <p id="feedback" class="feedback"></p>
+  </section>
+
+  <button id="resetWeek" class="resetWeek">reset week</button>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
