@@ -1,146 +1,33 @@
-let limit=2;
-let selectedDays=[];
-let saved=0;
-let friendsChoice=null;
-let ateChoice=null;
-let timerSeconds=600;
-let timerID=null;
+const key="saveSpendV3",defaults={limit:2,days:[],total:0,logs:[]};let s=JSON.parse(localStorage.getItem(key)||"null")||defaults,choice=null,t=600,timer=null;
+const qs=x=>document.querySelector(x),qsa=x=>[...document.querySelectorAll(x)],cash=n=>`${n<0?"-":""}$${Math.abs(n).toFixed(2)}`,save=()=>localStorage.setItem(key,JSON.stringify(s));
 
-const limitInput=document.getElementById("limit");
-const dayButtons=[...document.querySelectorAll(".days button")];
-const left=document.getElementById("left");
-const limitTop=document.getElementById("limitTop");
-const total=document.getElementById("total");
-const dayMessage=document.getElementById("dayMessage");
-const amountArea=document.getElementById("amountArea");
-const amountText=document.getElementById("amountText");
-const amount=document.getElementById("amount");
-const feedback=document.getElementById("feedback");
+/* real recipe pages plus remotely loaded food photography */
+const recipes=[
+ {name:"burrito bowl",restaurant:"chipotle",tags:"burrito mexican rice bowl",img:"https://loremflickr.com/900/600/burrito,bowl",time:"25 min",cost:"$1.18/serving",desc:"rice, black beans, salsa, cheese, and easy add-ons.",url:"https://www.budgetbytes.com/poor-mans-burrito-bowls/"},
+ {name:"orange chicken",restaurant:"panda express",tags:"chinese orange chicken rice",img:"https://loremflickr.com/900/600/orange,chicken",time:"25 min",cost:"$1.97/serving",desc:"sweet, tangy orange chicken with rice for a takeout-style dinner.",url:"https://www.budgetbytes.com/easy-orange-chicken/"},
+ {name:"easy lo mein",restaurant:"chinese takeout",tags:"chinese noodles panda express chow mein",img:"https://loremflickr.com/900/600/lo-mein,noodles",time:"15 min",cost:"$3.17/serving",desc:"savory noodles and colorful vegetables for an easy takeout alternative.",url:"https://www.budgetbytes.com/salad-bar-vegetable-lo-mein/"},
+ {name:"sushi bowls",restaurant:"sushi restaurant",tags:"sushi japanese salmon rice california roll",img:"https://loremflickr.com/900/600/sushi,bowl",time:"45 min",cost:"$2.21/serving",desc:"an easy bowl-style way to satisfy a sushi craving at home.",url:"https://www.budgetbytes.com/sushi-bowls-sriracha-mayo/"},
+ {name:"chicken tenders",restaurant:"chick-fil-a",tags:"chicken tenders nuggets sandwich",img:"https://loremflickr.com/900/600/chicken,tenders",time:"45 min",cost:"$1.76/serving",desc:"crispy baked chicken tenders for a simple fast-food alternative.",url:"https://www.budgetbytes.com/chicken-tenders/"},
+ {name:"fettuccine alfredo",restaurant:"italian restaurant",tags:"pasta italian noodles alfredo olive garden",img:"https://loremflickr.com/900/600/fettuccine,alfredo",time:"30 min",cost:"$0.46/serving",desc:"buttery parmesan fettuccine made with a few simple ingredients.",url:"https://www.budgetbytes.com/fettuccine-alfredo/"},
+ {name:"burrito bowl meal prep",restaurant:"chipotle",tags:"burrito mexican rice bowl meal prep",img:"https://loremflickr.com/901/600/burrito,rice,bowl",time:"30 min",cost:"$2.26/serving",desc:"a meal-prep-friendly bowl for when you know you'll want takeout later.",url:"https://www.budgetbytes.com/easiest-burrito-bowl-meal-prep/"},
+ {name:"easy sesame chicken",restaurant:"chinese takeout",tags:"sesame chicken chinese panda express rice",img:"https://loremflickr.com/900/601/sesame,chicken",time:"30 min",cost:"$1.70/serving",desc:"sweet and savory sesame chicken that's designed as a takeout alternative.",url:"https://www.budgetbytes.com/easy-sesame-chicken/"}
+];
 
-function updateDays(){
-  dayButtons.forEach(btn=>{
-    const on=selectedDays.includes(btn.dataset.day);
-    btn.classList.toggle("selected",on);
-    btn.classList.toggle("blocked",!on && selectedDays.length>=limit);
-  });
-  limitTop.textContent=limit;
-  left.textContent=Math.max(limit-selectedDays.length,0);
-  dayMessage.textContent=`choose up to ${limit} day${limit===1?"":"s"}.`;
-}
+function esc(x){let d=document.createElement("div");d.textContent=x;return d.innerHTML}
+function card(r){return `<article class="recipe"><a class="recipeLink" href="${r.url}" target="_blank" rel="noopener noreferrer"><div class="art"><img src="${r.img}" alt="${esc(r.name)}" loading="lazy"></div><div class="body"><em>instead of ${esc(r.restaurant)}</em><h3>${esc(r.name)}</h3><p>${esc(r.desc)}</p><div class="meta"><span>${r.time}</span><span>${r.cost}</span><span>make at home</span></div><span class="openRecipe">view real recipe →</span></div></a></article>`}
+qs("#feed").innerHTML=recipes.slice(0,6).map(card).join("");
 
-dayButtons.forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    const day=btn.dataset.day;
-    if(selectedDays.includes(day)){
-      selectedDays=selectedDays.filter(d=>d!==day);
-    }else if(selectedDays.length<limit){
-      selectedDays.push(day);
-    }else{
-      dayMessage.textContent=`you already chose ${limit} day${limit===1?"":"s"}.`;
-      return;
-    }
-    updateDays();
-  });
-});
+["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].forEach(d=>qs("#days").insertAdjacentHTML("beforeend",`<button data-d="${d}">${d}</button>`));
+function render(){qs("#total").textContent=cash(s.total);qs("#limit").value=s.limit;qs("#daymsg").textContent=`choose up to ${s.limit} day${s.limit===1?"":"s"}.`;qsa("#days button").forEach(b=>{let on=s.days.includes(b.dataset.d);b.classList.toggle("on",on);b.classList.toggle("block",!on&&s.days.length>=s.limit)});let saved=s.logs.filter(x=>x.type==="saved");qs("#count").textContent=`${saved.length} meal${saved.length===1?"":"s"}`;qs("#history").innerHTML=saved.length?saved.map(x=>`<div class="logitem"><div><h3>${esc(x.meal)}</h3><p>${esc(x.day)} · ${esc(x.date)}</p><button data-id="${x.id}">remove</button></div><b>+${cash(x.amount)}</b></div>`).join(""):'<p class="muted">your skipped meals will appear here so you know where your total came from.</p>';qsa("#history button").forEach(b=>b.onclick=()=>{let x=s.logs.find(v=>v.id==b.dataset.id);if(x)s.total-=x.type==="saved"?x.amount:-x.amount;s.logs=s.logs.filter(v=>v.id!=b.dataset.id);render()});save()}
+qs("#days").onclick=e=>{if(!e.target.matches("button"))return;let d=e.target.dataset.d;if(s.days.includes(d))s.days=s.days.filter(x=>x!==d);else if(s.days.length<s.limit)s.days.push(d);else{qs("#daymsg").textContent=`you already selected ${s.limit}.`;return}render()};
+qs("#limit").oninput=e=>{s.limit=Math.max(0,Math.min(7,Math.round(+e.target.value||0)));if(s.days.length>s.limit)s.days=s.days.slice(0,s.limit);render()};
+qs("#choice").onclick=e=>{if(!e.target.matches("button"))return;choice=e.target.dataset.v;qsa("#choice button").forEach(b=>b.classList.toggle("on",b===e.target));qs("#fields").classList.remove("hide")};
+qs("#log").onclick=()=>{let a=+qs("#amount").value,m=qs("#meal").value.trim()||"meal",day=qs("#logday").value;if(!choice||a<=0){qs("#feedback").textContent="choose an option and enter an amount.";return}let change=choice==="saved"?a:-a;s.total+=change;s.logs.unshift({id:Date.now(),day,meal:m,amount:a,type:choice,date:new Date().toLocaleDateString("en-US",{month:"short",day:"numeric"})});qs("#feedback").textContent=choice==="saved"?`${cash(a)} added to your savings.`:`${cash(a)} taken from your savings.`;qs("#amount").value="";qs("#meal").value="";render()};
 
-limitInput.addEventListener("input",()=>{
-  limit=Math.max(0,Math.min(7,Math.round(Number(limitInput.value)||0)));
-  limitInput.value=limit;
-  if(selectedDays.length>limit) selectedDays=selectedDays.slice(0,limit);
-  updateDays();
-});
-
-document.getElementById("friends").addEventListener("click",e=>{
-  if(!e.target.matches("button"))return;
-  friendsChoice=e.target.dataset.choice;
-  [...e.currentTarget.children].forEach(b=>b.classList.toggle("selected",b===e.target));
-});
-
-document.getElementById("ate").addEventListener("click",e=>{
-  if(!e.target.matches("button"))return;
-  ateChoice=e.target.dataset.choice;
-  [...e.currentTarget.children].forEach(b=>b.classList.toggle("selected",b===e.target));
-  amountArea.classList.remove("hidden");
-  amountText.textContent=ateChoice==="no"?"how much money did you save?":"how much money did you spend?";
-  amount.value="";
-  amount.focus();
-});
-
-document.getElementById("add").addEventListener("click",()=>{
-  const value=Number(amount.value);
-  if(!value || value<=0 || !ateChoice){
-    feedback.textContent="enter an amount first.";
-    return;
-  }
-
-  if(ateChoice==="no"){
-    saved+=value;
-    feedback.textContent=`$${value.toFixed(2)} added to your savings.`;
-  }else{
-    saved-=value;
-    feedback.textContent=`$${value.toFixed(2)} taken away from your savings.`;
-  }
-
-  total.textContent=saved<0?`-$${Math.abs(saved).toFixed(2)}`:`$${saved.toFixed(2)}`;
-  amount.value="";
-});
-
-const timer=document.getElementById("timer");
-const circle=document.getElementById("timerCircle");
-const start=document.getElementById("start");
-const cancel=document.getElementById("cancel");
-
-function drawTimer(){
-  const m=Math.floor(timerSeconds/60);
-  const s=timerSeconds%60;
-  timer.textContent=`${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-  circle.style.setProperty("--p",`${((600-timerSeconds)/600)*360}deg`);
-}
-
-start.addEventListener("click",()=>{
-  if(timerID)return;
-  start.classList.add("hidden");
-  cancel.classList.remove("hidden");
-  timerID=setInterval(()=>{
-    timerSeconds--;
-    drawTimer();
-    if(timerSeconds<=0){
-      clearInterval(timerID);
-      timerID=null;
-      start.classList.remove("hidden");
-      cancel.classList.add("hidden");
-      start.textContent="start again";
-      alert("10 minutes are up. do you still really want to eat out?");
-    }
-  },1000);
-});
-
-cancel.addEventListener("click",resetTimer);
-
-function resetTimer(){
-  clearInterval(timerID);
-  timerID=null;
-  timerSeconds=600;
-  drawTimer();
-  start.classList.remove("hidden");
-  cancel.classList.add("hidden");
-  start.textContent="start";
-}
-
-document.getElementById("resetWeek").addEventListener("click",()=>{
-  limit=2;
-  selectedDays=[];
-  saved=0;
-  friendsChoice=null;
-  ateChoice=null;
-  limitInput.value=2;
-  total.textContent="$0.00";
-  feedback.textContent="";
-  amountArea.classList.add("hidden");
-  document.querySelectorAll(".choice button").forEach(b=>b.classList.remove("selected"));
-  resetTimer();
-  updateDays();
-});
-
-updateDays();
-drawTimer();
+function search(){let q=qs("#search").value.trim().toLowerCase(),r=recipes.filter(x=>(x.name+" "+x.restaurant+" "+x.tags).toLowerCase().includes(q));qs("#searchmsg").textContent=q?`${r.length} real recipe alternative${r.length===1?"":"s"} for "${q}"`:"type a restaurant or food.";qs("#results").innerHTML=r.length?r.map(card).join(""):'<div class="card"><p class="muted">no exact match yet. try chipotle, panda express, chinese, sushi, chicken, pasta, or burrito.</p></div>'}
+qs("#go").onclick=search;qs("#search").onkeydown=e=>{if(e.key==="Enter")search()};qsa(".chips button").forEach(b=>b.onclick=()=>{qs("#search").value=b.textContent;search()});
+qsa("nav button").forEach(b=>b.onclick=()=>{qsa(".page").forEach(p=>p.classList.remove("active"));qsa("nav button").forEach(x=>x.classList.remove("active"));qs("#"+b.dataset.p).classList.add("active");b.classList.add("active");scrollTo(0,0)});
+function draw(){qs("#clock").textContent=`${String(Math.floor(t/60)).padStart(2,"0")}:${String(t%60).padStart(2,"0")}`;qs("#ring").style.setProperty("--p",`${((600-t)/600)*360}deg`)}
+qs("#start").onclick=()=>{if(timer)return;qs("#start").classList.add("hide");qs("#reset").classList.remove("hide");timer=setInterval(()=>{t--;draw();if(t<=0){clearInterval(timer);timer=null;qs("#start").classList.remove("hide");qs("#reset").classList.add("hide");qs("#start").textContent="start again";alert("10 minutes are up. do you still want to eat out?")}},1000)};
+qs("#reset").onclick=()=>{clearInterval(timer);timer=null;t=600;draw();qs("#start").classList.remove("hide");qs("#reset").classList.add("hide")};
+qs("#date").textContent=new Intl.DateTimeFormat("en-US",{weekday:"long",month:"short",day:"numeric"}).format(new Date());render();draw();
